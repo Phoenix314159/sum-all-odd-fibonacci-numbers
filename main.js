@@ -1,25 +1,40 @@
-function sumFibs(num) {
-Array.prototype.secondToLast = function(){
-    return this[this.length - 2];
-  };
-  
-  Array.prototype.last = function(){
-    return this[this.length -1];
-  };
-  
-  var fibArr = [1,1];
-  
-  while(fibArr.last() + fibArr.secondToLast() <= num){
+function addTogether() {
+
+var argsArray = Array.from(arguments);
     
-    fibArr.push(fibArr.last() + fibArr.secondToLast());
-  }
+var firstNumber = argsArray[0];
+
+   if(argsArray.length > 1){
+       
+   var secondNumber = argsArray[1];
+        
+   if(typeof firstNumber === 'number' && typeof secondNumber === 'number'){
   
-  return fibArr.filter(function(a){
-    
-    return a % 2 !== 0;
-  
-  }).reduce(function(x,y){
-    
-    return x+y;
-  });
+     return firstNumber + secondNumber;
+   
+   }else if(typeof firstNumber !== 'number' || typeof secondNumber !== 'number'){
+     
+     return undefined;
+   }   
+     
+ }else if(typeof firstNumber === 'number'){
+        
+   return function(additionalNumber){
+           
+           if(typeof additionalNumber === 'number'){
+             
+             return addTogether(firstNumber,additionalNumber); 
+                
+           }else{
+                  
+             return undefined;
+           }
+          
+           };
+     
+ }else{
+        
+  return undefined;
+ }
+   
 }
